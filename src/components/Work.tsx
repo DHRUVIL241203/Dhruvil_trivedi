@@ -13,7 +13,7 @@ const Work = () => {
       const container = document.querySelector(".work-container") as HTMLElement;
       const box = boxes[0] as HTMLElement;
       if (!box || !container) return 0;
-      
+
       const rectLeft = container.getBoundingClientRect().left;
       const parentWidth = container.clientWidth;
       const padding = parseInt(window.getComputedStyle(box).padding) / 2;
@@ -54,13 +54,13 @@ const Work = () => {
         </h2>
         <div className="work-flex">
           {[
-            { title: "MadiBook", role: "Full Stack Developer", tools: "PHP, MySQL, JavaScript", image: "/images/medibook.png" },
-            { title: "Product Inventory", role: "Backend Developer", tools: "PHP, MySQL", image: "/images/inventory-management.png" },
-            { title: "Chatbot System", role: "Full Stack Developer", tools: "PHP, JavaScript", image: "/images/chatbot.png" },
-            { title: "AIIMS Raipur", role: "Backend Developer", tools: "REST APIs, Database", image: "/images/aiims raipur.png" },
-            { title: "Flashmarket.in", role: "Laravel Developer", tools: "Laravel, MySQL", image: "/images/flashmarket.png" },
-            { title: "Lexcru", role: "Backend Developer", tools: "Laravel, REST APIs", image: "/images/lexcru.png" },
-            { title: "Skedulin", role: "Backend Developer", tools: "PHP, APIs", image: "/images/skedulin.png" }
+            { title: "MadiBook", role: "Full Stack Developer", tools: "PHP, MySQL, JavaScript", image: "/Dhruvil_trivedi/images/medibook.png" },
+            { title: "Product Inventory", role: "Backend Developer", tools: "PHP, MySQL", image: "/Dhruvil_trivedi/images/inventory-management.png" },
+            { title: "Chatbot System", role: "Full Stack Developer", tools: "PHP, JavaScript", image: "/Dhruvil_trivedi/images/chatbot.png" },
+            { title: "AIIMS Raipur", role: "Backend Developer", tools: "REST APIs, Database", image: "/Dhruvil_trivedi/images/aiims raipur.png" },
+            { title: "Flashmarket.in", role: "Laravel Developer", tools: "Laravel, MySQL", image: "/Dhruvil_trivedi/images/flashmarket.png" },
+            { title: "Lexcru", role: "Backend Developer", tools: "Laravel, REST APIs", image: "/Dhruvil_trivedi/images/lexcru.png" },
+            { title: "Skedulin", role: "Backend Developer", tools: "PHP, APIs", image: "/Dhruvil_trivedi/images/skedulin.png" }
           ].map((project, index) => (
             <div className="work-box" key={index}>
               <div className="work-info">
