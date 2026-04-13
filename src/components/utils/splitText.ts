@@ -27,12 +27,12 @@ export default function setSplitText() {
     }
 
     para.split = new SplitText(para, {
-      type: "lines,words",
+      type: "lines",
       linesClass: "split-line",
     });
 
     para.anim = gsap.fromTo(
-      para.split!.words,
+      para.split!.lines,
       { autoAlpha: 0, y: 80 },
       {
         autoAlpha: 1,
@@ -44,7 +44,7 @@ export default function setSplitText() {
         duration: 1,
         ease: "power3.out",
         y: 0,
-        stagger: 0.02,
+        stagger: 0.1,
       }
     );
   });
