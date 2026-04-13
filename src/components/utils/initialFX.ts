@@ -1,4 +1,4 @@
-import { SplitText } from "gsap/SplitText";
+import { SplitText } from "gsap-trial/SplitText";
 import gsap from "gsap";
 import { smoother } from "../Navbar";
 
@@ -15,20 +15,20 @@ export function initialFX() {
   var landingText = new SplitText(
     [".landing-info h3", ".landing-intro h2", ".landing-intro h1"],
     {
-      type: "lines",
+      type: "chars,lines",
       linesClass: "split-line",
     }
   );
   gsap.fromTo(
     landingText.chars,
-    { opacity: 0, y: 50 },
+    { opacity: 0, y: 80, filter: "blur(5px)" },
     {
       opacity: 1,
-      duration: 0.6,
+      duration: 1.2,
       filter: "blur(0px)",
       ease: "power3.inOut",
       y: 0,
-      stagger: 0.08,
+      stagger: 0.025,
       delay: 0.3,
     }
   );
@@ -81,7 +81,7 @@ export function initialFX() {
 }
 
 function LoopText(Text1: SplitText, Text2: SplitText) {
-  var tl = gsap.timeline({ repeat: 1, repeatDelay: 1 });
+  var tl = gsap.timeline({ repeat: -1, repeatDelay: 1 });
   const delay = 4;
   const delay2 = delay * 2 + 1;
 
