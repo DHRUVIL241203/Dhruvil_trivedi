@@ -10,43 +10,62 @@ export let smoother: ScrollSmoother;
 
 const Navbar = () => {
   useEffect(() => {
-    smoother = ScrollSmoother.create({
-      wrapper: "#smooth-wrapper",
-      content: "#smooth-content",
-      smooth: 1.7,
-      speed: 1.7,
-      effects: true,
-      autoResize: true,
-      ignoreMobileResize: true,
-    });
+    // ✅ Only desktop pe smoother
+    if (window.innerWidth > 1024) {
+      smoother = ScrollSmoother.create({
+        wrapper: "#smooth-wrapper",
+        content: "#smooth-content",
+        smooth: 1,        // 🔽 reduce
+        speed: 1,         // 🔽 reduce
+        effects: false,   // ❌ disable heavy feature
+        autoResize: true,
+      });
 
-    smoother.scrollTop(0);
-    smoother.paused(true);
+      smoother.scrollTop(0);
+      smoother.paused(true);
+    }
 
     let links = document.querySelectorAll(".header ul a");
+
+    const handleClick = (e: Event) => {
+      if (window.innerWidth > 1024 && smoother) {
+        e.preventDefault();
+        let elem = e.currentTarget as HTMLAnchorElement;
+        let section = elem.getAttribute("data-href");
+        smoother.scrollTo(section, true, "top top");
+      }
+    };
+
     links.forEach((elem) => {
-      let element = elem as HTMLAnchorElement;
-      element.addEventListener("click", (e) => {
-        if (window.innerWidth > 1024) {
-          e.preventDefault();
-          let elem = e.currentTarget as HTMLAnchorElement;
-          let section = elem.getAttribute("data-href");
-          smoother.scrollTo(section, true, "top top");
-        }
-      });
+      elem.addEventListener("click", handleClick);
     });
-    window.addEventListener("resize", () => {
+
+    const resizeHandler = () => {
       ScrollSmoother.refresh(true);
-    });
+    };
+
+    window.addEventListener("resize", resizeHandler);
+
+    // ✅ CLEANUP (VERY IMPORTANT)
+    return () => {
+      links.forEach((elem) => {
+        elem.removeEventListener("click", handleClick);
+      });
+
+      window.removeEventListener("resize", resizeHandler);
+
+      smoother?.kill();
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+    };
   }, []);
   return (
     <>
       <div className="header">
         <a href="/#" className="navbar-title" data-cursor="disable">
-          <img 
-            src="/images/Yellow and Black Simple Professional LinkedIn Profile Picture (1).png" 
-            alt="Dhruvil" 
-            style={{ width: "45px", height: "45px", borderRadius: "50%", objectFit: "cover" }} 
+          <img
+            src="/images/Yellow and Black Simple Professional LinkedIn Profile Picture (1).png"
+            alt="Dhruvil"
+            style={{ width: "45px", height: "45px", borderRadius: "50%", objectFit: "cover" }}
           />
         </a>
         <a
