@@ -15,7 +15,7 @@ export function initialFX() {
   var landingText = new SplitText(
     [".landing-info h3", ".landing-intro h2", ".landing-intro h1"],
     {
-      type: "chars,lines",
+      type: "lines",
       linesClass: "split-line",
     }
   );
